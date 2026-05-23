@@ -32,8 +32,6 @@ int main() {
     int n; // 班次数量
     scanf("%d", &n);
     int s, e, sid;
-    // 模拟输入处理 (根据题目格式：开始 结束 学号1 学号2...)
-    // 注意：题目输入格式较灵活，这里假设每行读取
     for (int i = 0; i < n; i++) {
         scanf("%d %d", &s, &e);
         shifts[shift_count].s = s;
@@ -41,7 +39,6 @@ int main() {
         shifts[shift_count].covered = 0;
         shift_count++;
 
-        // 读取该行剩余的学号
         while (getchar() != '\n') {
             if (scanf("%d", &sid) == 1) {
                 if (!student_map[sid]) {
@@ -58,7 +55,6 @@ int main() {
         }
     }
 
-    // 1. 将班次按结束时间排序
     qsort(shifts, shift_count, sizeof(Shift), compareShifts);
 
     int committee[MAX_STUDENTS];
